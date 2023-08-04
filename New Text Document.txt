@@ -1,0 +1,114 @@
+##first install composer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+
+##LLaravel  installation
+composer create-project laravel/laravel:^9.0 project name
+
+##tthen change directorey and go your project directory
+cd  cd project name
+
+##Run Laravel
+php artisan server
+
+##controller create
+php artisan make:controller folder name(if needed)/file name
+
+##mMiddleware
+php artisan make:middleware file name
+then initialize into kernal.php
+
+##Breeze Authentication
+create database name and change it from env
+composer require laravel/breeze --dev
+php artisan breeze:install
+php artisan migrate
+npm install --save-dev vite laravel-vite-plugin
+Then i need to update my package.json file
+"scripts":{"dev":"vite","build":"vite build"}
+npm run build
+
+##Reset email we need to go mail trap then copy smtp setting
+for must verify email you need to go models then user.php then write implements mustverifyEmail
+
+##for login with user name firs change registerblade.php then go to migration go to model
+after that change login.blade.php then go to loginrequest.php whic is under app under auth
+
+
+##auth list
+php artisan r:l
+
+##migration command
+#MOdel and migration
+Php artisan maek:model modelname -m
+then create table in migration file after that initialize in the model
+then php artisan migrate
+
+
+###image intervation for resize and others thing
+composer require intervention/image
+Intervention\Image\ImageServiceProvider::class, add this at config.php
+'Image' => Intervention\Image\Facades\Image::class, add this on alisas area at config.php
+php artisan vendor:publish --provider="intervention\Image\ImageServiceProviderLaravelRecent" run this on command line
+
+
+
+##sweet alert code for delete substances
+in admin_master_blade---write
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="{{ asset('backend/assets/js/code.js') }}"></script>
+then open a new file in public/backend/assets/js and here open an file name code.js
+then in code.js write--
+$(function(){
+    $(document).on('click','#delete',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+
+                  Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete This Data?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  }) 
+
+
+    });
+
+  });
+
+##make id="delete" in your delete input field
+
+
+##git init
+git add .
+git commit ""
+git remote
+git push
+
+
+
+
+
+
+
+
+
+
+
+
+
